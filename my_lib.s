@@ -1,13 +1,13 @@
-.globl my_sin
-.type my_sin, @function
-
-.bss
-    .lcomm num, 8
-
 .text
+	.globl my_sin
+	.type my_sin, @function
 my_sin:
-    fldl 4(%esp)
-    fldpi
-    fmulp
-    fsin
-    ret
+	push %ebp
+	mov %esp, %ebp
+	fldl 8(%ebp)
+	fldpi
+	fmulp
+	fsin
+	mov %ebp, %esp
+	pop %ebp
+	ret
